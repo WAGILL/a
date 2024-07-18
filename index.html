@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Grup MPLS</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Sweet Alert library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="overlay" class="overlay"></div>
+    <div id="formPopup" class="form-popup">
+        <h1>Pilih Ruangan Anda</h1>
+        <select id="groupSelect">
+            <option value="" disabled selected>Pilih Ruangan</option>
+            <option value="1">Ruangan 05 (PLC - Listrik)</option>
+            <option value="2">Ruangan 06 (VSD - Listrik)</option>
+            <option value="3">Ruangan 07 (WELDING - Mesin)</option>
+            <option value="4">Ruangan 08 (CNC - Mesin)</option>
+            <option value="5">Ruangan 09 (CHASIS - Otomotif)</option>
+            <option value="6">Ruangan 10 (ENGINE - Otomotif)</option>
+            <option value="7">Ruangan 11 (PASCAL - RPL)</option>
+            <option value="8">Ruangan 12 (DELPHI - RPL)</option>
+            <option value="9">Ruangan 13 (RUBY - RPL)</option>
+        </select>
+        <button onclick="submitGroup()">Submit</button>
+    </div>
+
+    <header>
+        <!-- Your header content here -->
+    </header>
+    <main>
+        <section id="mentors" class="mentors" style="display: none;">
+            <h2>Kenali Mentor Anda</h2>
+            <div class="mentor-list" id="mentorList"></div>
+        </section>
+        <section id="groupLinkSection" class="group-links" style="display: none;">
+            <h2>Bergabung Ke Group!</h2>
+            <div id="groupLink" class="group-link"></div>
+        </section>
+    </main>
+    <footer id="footer">
+        <p>&copy; 2024 SMK AL - FALAH. Hak cipta dilindungi undang-undang.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("blur");
+            document.getElementById("formPopup").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("footer").style.display = "none";
+        });
+
+        function submitGroup() {
+            const select = document.getElementById('groupSelect');
+            const group = select.value;
+            if (group) {
+                Swal.fire({
+                    title: 'Selamat Datang!!',
+                    html: '<p>Bersiaplah untuk perjalanan yang seru! Bergabunglah dengan grup WhatsApp MPLS di bawah ini untuk mulai berkenalan dengan teman-teman dan mentor baru Anda!</p>',
+                    icon: 'info',
+                    confirmButtonText: 'Oke'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.body.classList.remove("blur");
+                        document.getElementById("formPopup").style.display = "none";
+                        document.getElementById("overlay").style.display = "none";
+                        document.getElementById("footer").style.display = "block";
+                        showGroupInfo(group);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'Pilih Ruangan',
+                    text: 'Silakan pilih ruangan terlebih dahulu.',
+                    icon: 'warning',
+                    confirmButtonText: 'Oke'
+                });
+            }
+        }
+
+        function showGroupInfo(group) {
+            const mentors = {
+                1: [
+                    { name: "Fitri", description: "Fitri siap membimbing Anda dan menjawab semua pertanyaan Anda tentang PLC." },
+                    { name: "Reza", description: "Reza akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                2: [
+                    { name: "Naila", description: "Naila siap membimbing Anda dan menjawab semua pertanyaan Anda tentang VSD." },
+                    { name: "Dika", description: "Dika akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                3: [
+                    { name: "Rafa", description: "Rafa siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Welding." },
+                    { name: "Sarah", description: "Sarah akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                4: [
+                    { name: "Gio", description: "Gio siap membimbing Anda dan menjawab semua pertanyaan Anda tentang CNC." },
+                    { name: "Mughni", description: "Mughni akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                5: [
+                    { name: "Ghani", description: "Ghani siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Chasis." },
+                    { name: "Fauzi", description: "Fauzi akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                6: [
+                    { name: "Fazar", description: "Fazar siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Engine." },
+                    { name: "Fia", description: "Fia akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                7: [
+                    { name: "Nisrina", description: "Nisrina siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Pascal." },
+                    { name: "Rijal", description: "Rijal akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                8: [
+                    { name: "Kamalia", description: "Kamalia siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Delphi." },
+                    { name: "Andin", description: "Andin akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ],
+                9: [
+                    { name: "Savana", description: "Savana siap membimbing Anda dan menjawab semua pertanyaan Anda tentang Ruby." },
+                    { name: "Toby", description: "Toby akan membantu Anda dengan semua informasi yang Anda butuhkan selama MPLS." }
+                ]
+            };
+
+            const groupLinks = {
+                1: "https://chat.whatsapp.com/link1",
+                2: "https://chat.whatsapp.com/link2",
+                3: "https://chat.whatsapp.com/link3",
+                4: "https://chat.whatsapp.com/link4",
+                5: "https://chat.whatsapp.com/link5",
+                6: "https://chat.whatsapp.com/link6",
+                7: "https://chat.whatsapp.com/link7",
+                8: "https://chat.whatsapp.com/link8",
+                9: "https://chat.whatsapp.com/GTrSuW4WK4n9Hjf1kjUYrZ",
+            };
+
+            const mentorList = document.getElementById('mentorList');
+            mentorList.innerHTML = mentors[group] ? mentors[group].map(mentor => `
+                <div class="mentor">
+                    <h3>Mentor: ${mentor.name}</h3>
+                    <p>${mentor.description}</p>
+                </div>
+            `).join('') : '<p>Tidak ada mentor untuk ruangan ini.</p>';
+
+            document.getElementById('groupLink').innerHTML = `
+                <h3>Grup WhatsApp</h3>
+                <p>Haii!!, grup ini akan digunakan sebagai sarana informasi online selama MPLS! Jangan ragu untuk bertanya dan berinteraksi dengan anggota grup lainnya.</p>
+                <a href="${groupLinks[group]}" target="_blank">🚀 Bergabung dengan Grup Sekarang!</a>
+            `;
+
+            document.getElementById("mentors").style.display = "block";
+            document.getElementById("groupLinkSection").style.display = "block";
+        }
+    </script>
+</body>
+</html>
